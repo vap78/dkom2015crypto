@@ -19,7 +19,7 @@ public class CheckPasswordExample {
 
   public static void main(String[] params) {
     SHA1PasswordChecker checker = new SHA1PasswordChecker();
-    checker.storePassword("Alice", "Abdcd1234".toCharArray());
+    checker.storePassword("Alice", "Abcd1234".toCharArray());
     System.out.println(checker.checkPassword("Alice", "Abcd1234".toCharArray()));
   }
 
