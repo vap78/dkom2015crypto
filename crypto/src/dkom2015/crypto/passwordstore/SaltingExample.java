@@ -12,7 +12,7 @@
  *   
  */
 
-package crypto;
+package dkom2015.crypto.passwordstore;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;

@@ -12,7 +12,7 @@
  *   
  */
 
-package crypto;
+package dkom2015.crypto;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

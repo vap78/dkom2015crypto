@@ -12,7 +12,7 @@
  *   
  */
  
-package crypto;
+package dkom2015.crypto.passwordstore;
 
 public interface PasswordChecker {
   public void storePassword(String username, char[] password);

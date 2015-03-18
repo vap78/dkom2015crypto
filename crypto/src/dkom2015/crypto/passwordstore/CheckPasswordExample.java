@@ -12,7 +12,7 @@
  *   
  */
 
-package crypto;
+package dkom2015.crypto.passwordstore;
 
 
 public class CheckPasswordExample {

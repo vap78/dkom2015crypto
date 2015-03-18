@@ -12,9 +12,9 @@
  *   
  */
  
-package crypto;
+package dkom2015.crypto.passwordstore;
 
-import static crypto.Utils.*;
+import static dkom2015.crypto.Utils.*;
 
 import java.util.Arrays;
 
