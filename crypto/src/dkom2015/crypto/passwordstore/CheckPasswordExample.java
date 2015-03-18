@@ -17,6 +17,7 @@ package dkom2015.crypto.passwordstore;
 
 public class CheckPasswordExample {
 
+  // https://crackstation.net/
   public static void main(String[] params) {
     SHA1PasswordChecker checker = new SHA1PasswordChecker();
     checker.storePassword("Alice", "Abcd1234".toCharArray());
