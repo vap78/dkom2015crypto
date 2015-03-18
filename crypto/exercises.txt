@@ -1,0 +1,92 @@
+General hints
+
+Cryptographic APIs in Java usually have a single static method as entry point and this static method accepts the name of the algorithm to work with.
+	I.e. MessageDigest.getInstance("MD5") will return a MessageDigest instance that will use the MD5 algorithm while MessageDigest.getInstance("SHA") will return an	 
+	instance working with the SHA algorithm
+Cryptographic operations require keys of the same type/algorithm. 
+	I.e. encrypting/decrypting with the AES algorihtm requires an AES key. Signing with the SHA1RSA algorithm requires an RSA key etc. 
+The names of the algorithms, key types etc available in the default crypto provider are available here:
+http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html
+
+
+1. Secure hashes
+
+	Implement following interface for storing and checking passwords:
+	
+	public interface PasswordChecker {
+	  /**
+	   * Stores a password for the user
+	   *
+	   * @param userName 
+	   * @param password
+	   */
+	  public void storePassword(String userName, char[] password);
+	  
+	  /**
+	   * Checks the provider password for this user against the stored ones
+	   *
+	   * @param userName 
+	   * @param password
+	   * @return true if the provided username/password combination exists in the storage   
+	   */
+	  public boolean checkPassword(String userName, char[] password);
+	}
+	
+	Hints:
+		Never store the password in plain text
+		Use java.security.MessageDigest API to generate hashes
+		
+	
+2. Symmetric block encryption
+
+	Implement following interface:
+	public interface SecureCommunicator {
+	  /**
+	   * Encrypts the given message with the given key
+	   * 
+	   * @param key the secret key to encrypt the message with
+	   * @param message the message to encrypt
+	   * 
+	   * @return the encrypted data
+	   * 
+	   * @throws Exception
+	   */
+	  public byte[] encryptMessage(SecretKey key, String message) throws Exception;
+	  
+	  /**
+	   * Decrypts the provided data with the provided key
+	   *  
+	   * @param key the key to be used in the decryption 
+	   * @param encryptedMessage the message to be decrypted
+	   * 
+	   * @return the decrypted result
+	   * 
+	   * @throws Exception
+	   */
+	  public String decryptMessage(SecretKey key, byte[] encryptedMessage) throws Exception;
+	}
+	
+	Hints:
+		Use java.security.Cipher to obtain a cipher
+		Use javax.crypto.KeyGenerator to generate a secret key
+		Select the cipher from the available at http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#impl
+		Key algorithm and cipher algorithm must match
+		The cipher name consists of three parts separated by slash:
+			"algorithm name"/"mode of operation"/"padding"
+			where:
+			algorithm: is the name of the used algorithm i.e. AES, DES or similar
+			mode of operation: describes how to repeatedly apply a cipher's single-block operation to securely transform amounts of data larger than a block
+			padding: describes how to pad the message so that its size is divisible by the block size
+		
+3. Signature
+
+	Generate a keypair via the java keytool
+	Use the private key from the keypair to sign a message
+	Use the public key to verify the generated signature
+	
+	Hints:
+		Keytool is part of JDK - the binary is located in JDK_HOME/bin
+		RSA is one of the most widely used asymmetric algorithms
+		By default keytool puts generated keys in a keystore of type JKS 
+		Use java.security.KeyStore to load the generated keystore
+		Use java.security.Signature to calculate or check signatures
