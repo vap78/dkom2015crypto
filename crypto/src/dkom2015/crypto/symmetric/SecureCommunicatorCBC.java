@@ -11,11 +11,10 @@ public class SecureCommunicatorCBC implements SecureCommunicator {
   private static final int SEED_SIZE = 16;
 
   @Override
-  public byte[] encryptedMessage(SecretKey key, String message) throws Exception {
+  public byte[] encryptMessage(SecretKey key, String message) throws Exception {
     SecureRandom secureRandom = new SecureRandom();
     byte [] ivSeed = secureRandom.generateSeed(16);
 
-    // encrypt
     Cipher cipher = Cipher.getInstance(key.getAlgorithm() + "/CBC/PKCS5Padding");
     IvParameterSpec iv = new IvParameterSpec(ivSeed);
     cipher.init(Cipher.ENCRYPT_MODE, key, iv);

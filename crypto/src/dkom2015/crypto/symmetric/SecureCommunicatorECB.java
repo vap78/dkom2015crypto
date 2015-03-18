@@ -6,7 +6,7 @@ import javax.crypto.SecretKey;
 public class SecureCommunicatorECB implements SecureCommunicator {
 
   @Override
-  public byte[] encryptedMessage(SecretKey key, String message) throws Exception {
+  public byte[] encryptMessage(SecretKey key, String message) throws Exception {
     // encrypt
     Cipher cipher = Cipher.getInstance(key.getAlgorithm() + "/ECB/PKCS5Padding");
     cipher.init(Cipher.ENCRYPT_MODE, key);

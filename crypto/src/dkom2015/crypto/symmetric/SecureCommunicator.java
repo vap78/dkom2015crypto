@@ -4,7 +4,7 @@ import javax.crypto.SecretKey;
 
 public interface SecureCommunicator {
 
-  public byte[] encryptedMessage(SecretKey key, String message) throws Exception;
+  public byte[] encryptMessage(SecretKey key, String message) throws Exception;
   
   public String decryptMessage(SecretKey key, byte[] encryptedMessage) throws Exception;
 }
