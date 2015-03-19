@@ -87,6 +87,7 @@ http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.htm
 	Hints:
 		Keytool is part of JDK - the binary is located in JDK_HOME/bin
 		RSA is one of the most widely used asymmetric algorithms
+		To generate a keystore use following command: keytool -genkey -alias test -keyalg RSA -keystore keystore.jks -keysize 2048
 		By default keytool puts generated keys in a keystore of type JKS 
 		Use java.security.KeyStore to load the generated keystore
 		Use java.security.Signature to calculate or check signatures
